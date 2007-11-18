@@ -1,0 +1,13 @@
+Changes
+LCSS_XS.xs
+Makefile.PL
+MANIFEST
+ppport.h
+lcss.h
+lcss.c
+README
+t/00.load.t
+t/01.strings.t
+t/pod.t
+lib/String/LCSS_XS.pm
+META.yml                                 Module meta-data (added by MakeMaker)
