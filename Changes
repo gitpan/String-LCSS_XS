@@ -1,5 +1,13 @@
 Revision history for Perl extension String::LCSS_XS.
 
+0.02  Sun Nov 18 2007
+    - POD: typos
+    - memory deallocation in lcss
+    - now really returns the first found lccs if there are multiple
+    - fixed some warnings
+    - added benchmark in POD
+    - removed 5.8.6 dependency
+
 0.01  Sun Nov 18 2007
 	- initial CPAN upload 
 
