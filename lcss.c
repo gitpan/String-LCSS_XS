@@ -1,9 +1,8 @@
-#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
 char* lcss(char* s, char* t) {
-    int i,j,m,n,z,found;
+    int i,j,m,n,z,pos;
     int** L;
     char *ret;
 
@@ -14,14 +13,16 @@ char* lcss(char* s, char* t) {
     for (i=0; i<=m; i++) {
         L[i] = (int*)malloc((n+1)*sizeof(int));
     }
-    z = 0;
-    found = 0;
+
     // initialize matrix
     for (i=0; i<=m; i++) {
         for (j=0; j<=n; j++) {
             L[i][j] =0;
         }
     }
+
+    z = 0;
+    pos = 0;
     // compute matrix
     for (i=1; i<=m; i++) {
         for (j=1; j<=n; j++) {
@@ -35,7 +36,7 @@ char* lcss(char* s, char* t) {
             // needs to push the current position in ret
             //    }
             //    if (L[i][j] == z) {
-                    found = i - z;
+                    pos = i - z;
                 }	
             }			
         }	
@@ -47,9 +48,8 @@ char* lcss(char* s, char* t) {
     }
     free(L);
 
-    
     if ((ret = malloc(z+1)) != NULL) {
-        strncpy(ret, &s[found],z)[z]='\0';
+        strncpy(ret, &s[pos],z)[z]='\0';
     }   
     return ret;
 }

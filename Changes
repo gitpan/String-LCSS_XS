@@ -1,6 +1,11 @@
 Revision history for Perl extension String::LCSS_XS.
 
-0.02  Sun Nov 18 2007
+0.03  Mon Nov 19 2007
+    - Argh, forgot 5.8.6 dependency in Makefile.PL
+    - POD
+    - code cleanup
+
+0.02  Sun Nov 19 2007
     - POD: typos
     - memory deallocation in lcss
     - now really returns the first found lccs if there are multiple
