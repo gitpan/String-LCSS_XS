@@ -7,7 +7,9 @@ lcss.h
 lcss.c
 README
 t/00.load.t
-t/01.strings.t
+t/10.lcss.t
+t/20.lcss_all.t
+t/90.synopsis.t
 t/pod.t
 lib/String/LCSS_XS.pm
 META.yml                                 Module meta-data (added by MakeMaker)

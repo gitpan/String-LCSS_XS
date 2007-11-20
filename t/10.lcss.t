@@ -1,7 +1,7 @@
-use Test::More tests => 7;
+use Test::More tests => 9;
 use strict;
 
-use String::LCSS_XS;
+use String::LCSS_XS qw(lcss);
 
 
 my $longest = lcss ( "xyzzx", "abcxyzefg" );
@@ -28,3 +28,9 @@ is ( $longest, " the quick brown fox ", "why did the quick brown fox" );
 
 $longest = lcss ( 'ABBAGGG', 'HHHHZZAB');
 is ($longest, 'AB', 'ABBA at the beginning and end');
+
+$longest = lcss ( 'HHHHZZAB', 'ABBAGGG');
+is ($longest, 'AB', 'ABBA at the beginning and end (reverse args)');
+
+my @result = lcss ( "zyzxx", "abczyzefg" );
+is_deeply(\@result, [ 'zyz',0,3], 'wantarray returns positions');

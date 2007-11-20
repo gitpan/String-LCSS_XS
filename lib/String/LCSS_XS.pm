@@ -1,6 +1,5 @@
 package String::LCSS_XS;
 
-#use 5.008006;
 use strict;
 use warnings;
 
@@ -8,11 +7,11 @@ require Exporter;
 
 our @ISA = qw(Exporter);
 
-our @EXPORT = qw(
-	lcss	
+our @EXPORT_OK = qw(
+	lcss lcss_all	
 );
 
-our $VERSION = '0.03';
+our $VERSION = '0.1';
 
 require XSLoader;
 XSLoader::load('String::LCSS_XS', $VERSION);
@@ -26,10 +25,18 @@ String::LCSS_XS - Find The Longest Common Substring of Two Strings.
 
 =head1 SYNOPSIS
 
-  use String::LCSS_XS;
+  use String::LCSS_XS qw(lcss lcss_all);
   
   my $longest = lcss ( "zyzxx", "abczyzefg" );
   print $longest, "\n";
+
+  my @result = lcss ( "zyzxx", "abczyzefg" );
+  print "$result[0] ($result[1],$result[2])\n";
+
+  my @results = lcss_all ( "ABBA", "BABA" );
+  for my $result (@results) {
+     print "$result->[0] ($result->[1],$result->[2])\n";
+  }
 
 =head1 DESCRIPTION
 
@@ -37,9 +44,23 @@ String::LCSS_XS computes the Longest Common Substring of two strings.
 It is a C implementation of L<String::LCSS> and uses a dynamic programming 
 algorithm with both runtime and memory usage of O(mn). 
 
-=head1 EXPORT
+=head1 EXPORT_OK 
 
- char* lcss(char* s, char* t)
+By default "String::LCSS_XS" does not export any subroutines. The subroutines
+defined are
+  
+=over
+
+=item lcss(s, t)
+
+In scalar context, returns the first found longest common substring of s and
+t. In array context, it returns also the match positions.
+
+=item lcss_all(s, t)
+
+Returns all longest common substrings of s and t including the match positions.  
+
+=back
 
 =head1 PERFORMANCE
 
@@ -56,14 +77,11 @@ Please report any bugs or feature requests to
 C<bug-string-lcss_xs@rt.cpan.org>, or through the web interface at
 L<http://rt.cpan.org>. 
 
-If there are multiple lcss, then this implementation
-returns only the first found.
-
-String::LCSS_XS currently does not support L<String::LCSS> feature in list
-context where it returns the lcss positions. 
-
 L<String::LCSS> returns undef when the lcss has size 1. String::LCSS_XS
 returns this single character.
+
+The maximum number of results in lcss_all is currently 256. You can change
+this in lcss.h.
 
 =head1 CREDITS
 
@@ -73,6 +91,7 @@ SYNOPSIS.
 =head1 SEE ALSO
 
 L<String::LCSS> - A pure perl implementation (but O(n^3) runtime)
+
 L<Tree::Suffix> - A lcss solution based on Suffix Trees
 
 Gusfield, Dan. I<Algorithms on Strings, Trees and Sequences: Computer Science

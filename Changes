@@ -1,5 +1,12 @@
 Revision history for Perl extension String::LCSS_XS.
 
+0.1  Tue Nov 20 2007
+    - calloc
+    - new ppport.h
+    - wantarray
+    - lcss_all
+    - EXPORT_OK
+    
 0.03  Mon Nov 19 2007
     - Argh, forgot 5.8.6 dependency in Makefile.PL
     - POD
