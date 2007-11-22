@@ -1,4 +1,5 @@
 package String::LCSS_XS;
+use 5.006_001;
 
 use strict;
 use warnings;
@@ -11,7 +12,7 @@ our @EXPORT_OK = qw(
 	lcss lcss_all	
 );
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 
 require XSLoader;
 XSLoader::load('String::LCSS_XS', $VERSION);
@@ -54,7 +55,8 @@ defined are
 =item lcss(s, t)
 
 In scalar context, returns the first found longest common substring of s and
-t. In array context, it returns also the match positions.
+t. In array context, it returns also the match positions. Mainly for
+compatibility with L<String::LCSS>. 
 
 =item lcss_all(s, t)
 
@@ -66,6 +68,7 @@ Returns all longest common substrings of s and t including the match positions.
 
   my $s = 'i pushed the lazy dog into a creek, the quick brown fox told me to';
   my $t = 'the quick brown fox jumps over the lazy dog';
+
 
                     Rate    String::LCSS String::LCSS_XS
  String::LCSS     42.5/s              --           -100%
@@ -79,9 +82,6 @@ L<http://rt.cpan.org>.
 
 L<String::LCSS> returns undef when the lcss has size 1. String::LCSS_XS
 returns this single character.
-
-The maximum number of results in lcss_all is currently 256. You can change
-this in lcss.h.
 
 =head1 CREDITS
 

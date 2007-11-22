@@ -8,11 +8,11 @@
 
 MODULE = String::LCSS_XS		PACKAGE = String::LCSS_XS		
 
-
 void
 _compute_all_lcss(s, t)
 	char *	s
 	char *	t
+PROTOTYPE: $$
 ALIAS:
     lcss = 1
     lcss_all = 2
@@ -22,9 +22,14 @@ PREINIT:
     AV * ra;
 PPCODE:
     res = _lcss(s,t);
-    if (res.n > 0) {
+    if (res.n <= 0) {
+        _free_res(res);
+        return XSRETURN_UNDEF;
+    }
+    else {
         if (GIMME_V == G_SCALAR) {
-            return XSRETURN_PV(res.lcss[0].s);
+            EXTEND(sp, 1);
+            PUSHs ( sv_2mortal ( newSVpv ( res.lcss[0].s, 0)));
         }
         else {
             if (ix == 1) {
@@ -45,3 +50,4 @@ PPCODE:
             }
         }
     }
+    _free_res(res);

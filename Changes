@@ -1,5 +1,11 @@
 Revision history for Perl extension String::LCSS_XS.
 
+0.2  Tue Nov 21 2007
+    - no 256 results limit anymore
+    - fixed some memleaks
+    - prototype $$
+    - added dependency to 5.6.1
+
 0.1  Tue Nov 20 2007
     - calloc
     - new ppport.h
