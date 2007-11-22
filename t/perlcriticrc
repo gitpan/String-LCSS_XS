@@ -1,0 +1,5 @@
+severity=1
+
+[-Documentation::RequirePodSections]
+[-Miscellanea::RequireRcsKeywords]
+[-ClassHierarchies::ProhibitExplicitISA]

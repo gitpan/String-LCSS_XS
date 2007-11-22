@@ -1,5 +1,12 @@
 Revision history for Perl extension String::LCSS_XS.
 
+0.3  Tue Nov 21 2007
+    - small optimization
+    - LICENSE in Makefile.PL
+    - added Build.PL
+    - added META.yml
+    - added perlcritic and pod-coverage
+
 0.2  Tue Nov 21 2007
     - no 256 results limit anymore
     - fixed some memleaks

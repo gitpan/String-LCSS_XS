@@ -9,13 +9,13 @@ require Exporter;
 our @ISA = qw(Exporter);
 
 our @EXPORT_OK = qw(
-	lcss lcss_all	
+    lcss lcss_all
 );
 
-our $VERSION = '0.2';
+our $VERSION = '0.3';
 
 require XSLoader;
-XSLoader::load('String::LCSS_XS', $VERSION);
+XSLoader::load( 'String::LCSS_XS', $VERSION );
 
 1;
 __END__
@@ -47,7 +47,7 @@ algorithm with both runtime and memory usage of O(mn).
 
 =head1 EXPORT_OK 
 
-By default "String::LCSS_XS" does not export any subroutines. The subroutines
+By default String::LCSS_XS does not export any subroutines. The subroutines
 defined are
   
 =over
@@ -55,7 +55,7 @@ defined are
 =item lcss(s, t)
 
 In scalar context, returns the first found longest common substring of s and
-t. In array context, it returns also the match positions. Mainly for
+t. In array context, it also returns the match positions. Mainly for
 compatibility with L<String::LCSS>. 
 
 =item lcss_all(s, t)
@@ -80,7 +80,7 @@ Please report any bugs or feature requests to
 C<bug-string-lcss_xs@rt.cpan.org>, or through the web interface at
 L<http://rt.cpan.org>. 
 
-L<String::LCSS> returns undef when the lcss has size 1. String::LCSS_XS
+L<String::LCSS> returns C<undef> when the lcss has size 1. String::LCSS_XS
 returns this single character.
 
 =head1 CREDITS
@@ -108,8 +108,7 @@ Markus Riester, E<lt>mriester@gmx.deE<gt>
 Copyright (C) 2007 by Markus Riester
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.6 or,
-at your option, any later version of Perl 5 you may have available.
+it under the same terms as Perl itself.
 
 =head1 DISCLAIMER OF WARRANTY
 

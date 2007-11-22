@@ -30,12 +30,6 @@ LCSS_RES _lcss(char* s, char* t) {
     // compute matrix
     for (i=1; i<=m; i++) {
         for (j=1; j<=n; j++) {
-            /* maybe we need some more space */
-            if (found >= allocated) {
-                allocated += 256;
-                REALLOC(pos_s, int, allocated);
-                REALLOC(pos_t, int, allocated);
-            }    
             if (s[i-1] == t[j-1]) {
                 L[i][j] = L[i-1][j-1]+1;
                 if (L[i][j] > z) {
@@ -43,6 +37,12 @@ LCSS_RES _lcss(char* s, char* t) {
                     found = 0;
                 }
                 if (L[i][j] == z) {
+                    /* maybe we need some more space */
+                    if (found >= allocated) {
+                        allocated += 256;
+                        REALLOC(pos_s, int, allocated);
+                        REALLOC(pos_t, int, allocated);
+                    }    
                     pos_s[found] = i - z;
                     pos_t[found] = j - z;
                     found++;

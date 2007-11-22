@@ -1,10 +1,19 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         String-LCSS_XS
-version:      0.2
-version_from: lib/String/LCSS_XS.pm
-installdirs:  site
+---
+name: String-LCSS_XS
+version: 0.3
+author:
+  - 'Markus Riester <mriester@gmx.de>'
+abstract: Find The Longest Common Substring of Two Strings.
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
 requires:
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.30
+  Test::More: 0
+provides:
+  String::LCSS_XS:
+    file: lib/String/LCSS_XS.pm
+    version: 0.3
+generated_by: Module::Build version 0.2808
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
