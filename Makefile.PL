@@ -16,4 +16,5 @@ WriteMakefile(
     DEFINE            => '-I ../..', 
     INC               => '-I.', 
     OBJECT            => '$(O_FILES)', 
+    clean             =>  { FILES => 'String-LCSS_XS-*' },
 );

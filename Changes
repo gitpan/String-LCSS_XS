@@ -1,5 +1,9 @@
 Revision history for Perl extension String::LCSS_XS.
 
+0.4  Sat Nov 24 2007
+    - linear memory
+    - String-LCSS_XS-* in clean
+
 0.3  Tue Nov 21 2007
     - small optimization
     - LICENSE in Makefile.PL

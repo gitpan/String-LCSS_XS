@@ -12,7 +12,7 @@ our @EXPORT_OK = qw(
     lcss lcss_all
 );
 
-our $VERSION = '0.3';
+our $VERSION = '0.4';
 
 require XSLoader;
 XSLoader::load( 'String::LCSS_XS', $VERSION );
@@ -41,9 +41,10 @@ String::LCSS_XS - Find The Longest Common Substring of Two Strings.
 
 =head1 DESCRIPTION
 
-String::LCSS_XS computes the Longest Common Substring of two strings.
+String::LCSS_XS computes the Longest Common Substring of two strings s and t.
 It is a C implementation of L<String::LCSS> and uses a dynamic programming 
-algorithm with both runtime and memory usage of O(mn). 
+algorithm with O(mn) runtime and O(n) memory usage (m is the length of s 
+and n the length of t). 
 
 =head1 EXPORT_OK 
 
@@ -81,7 +82,7 @@ C<bug-string-lcss_xs@rt.cpan.org>, or through the web interface at
 L<http://rt.cpan.org>. 
 
 L<String::LCSS> returns C<undef> when the lcss has size 1. String::LCSS_XS
-returns this single character.
+returns this single character. 
 
 =head1 CREDITS
 
@@ -97,7 +98,6 @@ L<Tree::Suffix> - A lcss solution based on Suffix Trees
 Gusfield, Dan. I<Algorithms on Strings, Trees and Sequences: Computer Science
 and Computational Biology>. USA: Cambridge University Press. 
 ISBN 0-521-58519-8. 
-
 
 =head1 AUTHOR
 
@@ -132,6 +132,5 @@ RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
 FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
 SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGES.
-
 
 =cut

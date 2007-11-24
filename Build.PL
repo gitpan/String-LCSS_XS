@@ -12,6 +12,7 @@ my $build = Module::Build->new(
     license           => 'perl',
     c_source          => './',
     xs_files          => { 'LCSS_XS.xs' => 'lib/String/LCSS_XS.xs', },
+    add_to_cleanup      => [ 'String-LCSS_XS-*' ],
 );
 
 $build->create_build_script;

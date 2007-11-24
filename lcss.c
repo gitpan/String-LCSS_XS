@@ -2,41 +2,39 @@
 #include<string.h>
 #include<stdio.h>
 #include "lcss.h"
+#include "macros.h"
 
 LCSS_RES _lcss(char* s, char* t) {
     int i,j,m,n,z,found,allocated;
     int *pos_s, *pos_t;  /* hit positions in s and t */
-    int **L;             /* dyn. programming matrix  */
+    int *L, *K;          /* dyn. programming rows    */
+
     LCSS *lcss;          /* return value lcss        */
     LCSS_RES res;        /* return value             */
 
     m = strlen(s);
     n = strlen(t);
-    // allocate space for the mn dynamic programming matrix L
-    MALLOC(L, int*,m+1);
-    for (i=0; i<=m; i++) {
-        if ( ( L[i] = (int*)calloc((n+1),sizeof(int) )) == NULL) {
-            fprintf(stderr,"calloc failed.\n");
-            exit(EXIT_FAILURE); 
-        }
-    }
+
+    /* allocate space for the dynamic programming rows
+       I should switch s and t when t is larger than s     */
+    CALLOC(K, int,n+1);
+    CALLOC(L, int,n+1);
 
     z = 0;
     found = 0;
     allocated = 256;    
     MALLOC(pos_s, int, allocated);
     MALLOC(pos_t, int, allocated);
-
-    // compute matrix
+    /* compute matrix */
     for (i=1; i<=m; i++) {
         for (j=1; j<=n; j++) {
             if (s[i-1] == t[j-1]) {
-                L[i][j] = L[i-1][j-1]+1;
-                if (L[i][j] > z) {
-                    z = L[i][j];
+                L[j] = K[j-1]+1;
+                if (L[j] > z) {
+                    z = L[j];
                     found = 0;
                 }
-                if (L[i][j] == z) {
+                if (L[j] == z) {
                     /* maybe we need some more space */
                     if (found >= allocated) {
                         allocated += 256;
@@ -48,14 +46,16 @@ LCSS_RES _lcss(char* s, char* t) {
                     found++;
                 }	
             }
-        }	
+        }
+        /* TODO: use pointers to this two arrays instead */
+        for (j=0; j<=n; j++) {
+            K[j]=L[j];
+            L[j]=0;
+        }    
     }	
 
-    // free matrix
-    for (i=0; i<=m; i++) {
-        free(L[i]);
-    }
     free(L);
+    free(K);
     
     MALLOC(lcss, LCSS,found);
     for (i=0; i < found; i++) {
