@@ -1,17 +1,23 @@
 Revision history for Perl extension String::LCSS_XS.
 
+0.5  Tue Nov 27 2007
+    - t/kwalitee.t added
+    - build_requires in Build.PL
+    - dependency to Exporter and XSLoader added
+    - compilation on Win32 should work now (thanks Taro Nishino)
+
 0.4  Sat Nov 24 2007
     - linear memory
     - String-LCSS_XS-* in clean
 
-0.3  Tue Nov 21 2007
+0.3  Wed Nov 21 2007
     - small optimization
     - LICENSE in Makefile.PL
     - added Build.PL
     - added META.yml
     - added perlcritic and pod-coverage
 
-0.2  Tue Nov 21 2007
+0.2  Wed Nov 21 2007
     - no 256 results limit anymore
     - fixed some memleaks
     - prototype $$

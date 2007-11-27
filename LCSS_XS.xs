@@ -24,7 +24,7 @@ PPCODE:
     res = _lcss(s,t);
     if (res.n <= 0) {
         _free_res(res);
-        return XSRETURN_UNDEF;
+        XSRETURN_UNDEF;
     }
     else {
         if (GIMME_V == G_SCALAR) {

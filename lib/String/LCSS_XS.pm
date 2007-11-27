@@ -12,7 +12,7 @@ our @EXPORT_OK = qw(
     lcss lcss_all
 );
 
-our $VERSION = '0.4';
+our $VERSION = '0.5';
 
 require XSLoader;
 XSLoader::load( 'String::LCSS_XS', $VERSION );

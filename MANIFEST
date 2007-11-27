@@ -12,6 +12,7 @@ t/00.load.t
 t/10.lcss.t
 t/20.lcss_all.t
 t/90.synopsis.t
+t/kwalitee.t
 t/perlcriticrc
 t/perlcritic.t
 t/pod.t

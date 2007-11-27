@@ -1,8 +1,8 @@
-String-LCSS_XS version 0.4
+String-LCSS_XS version 0.5
 ==========================
 
 String::LCSS_XS computes the Longest Common Substring of two strings
-s and t. It is a C implementation of L<String::LCSS> and uses a 
+s and t. It is a C implementation of String::LCSS and uses a 
 dynamic programming algorithm with runtime of O(mn) and memory usage
 of O(n) (m is the length of s and n the length of t). 
 
