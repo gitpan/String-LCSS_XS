@@ -12,7 +12,7 @@ our @EXPORT_OK = qw(
     lcss lcss_all
 );
 
-our $VERSION = '0.5';
+our $VERSION = '0.6';
 
 require XSLoader;
 XSLoader::load( 'String::LCSS_XS', $VERSION );
@@ -70,10 +70,9 @@ Returns all longest common substrings of s and t including the match positions.
   my $s = 'i pushed the lazy dog into a creek, the quick brown fox told me to';
   my $t = 'the quick brown fox jumps over the lazy dog';
 
-
-                    Rate    String::LCSS String::LCSS_XS
- String::LCSS     42.5/s              --           -100%
- String::LCSS_XS 32609/s          76628%              --
+                     Rate    String::LCSS String::LCSS_XS
+  String::LCSS     42.8/s              --           -100%
+  String::LCSS_XS 46296/s         108074%              --
   
 =head1 BUGS AND LIMITATIONS
 

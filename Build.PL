@@ -7,12 +7,16 @@ use Module::Build;
 my $build = Module::Build->new(
     module_name       => 'String::LCSS_XS',
     dist_version_from => 'lib/String/LCSS_XS.pm',
+    configure_requires => {
+        'Module::Build' => 0.07,
+    },
     requires          => {  
         'XSLoader'   => 0,
         'Exporter'   => 0,
     },
-    build_requires     => { 
+    build_requires    => { 
         'Test::More' => 0, 
+        'ExtUtils::CBuilder' => 0, 
     },
     dist_author       => 'Markus Riester <mriester@gmx.de>',
     license           => 'perl',
