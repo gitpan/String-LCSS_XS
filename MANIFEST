@@ -8,6 +8,7 @@ lcss.h
 lcss.c
 macros.h
 README
+examples/lcss.pl
 t/00.load.t
 t/10.lcss.t
 t/20.lcss_all.t

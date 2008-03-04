@@ -1,5 +1,9 @@
 Revision history for Perl extension String::LCSS_XS.
 
+0.7  Mon Dec 10 2007
+    - code cleanup
+    - added example
+
 0.6  Mon Dec 10 2007
     - configure requires, CBuilder dependency (hopefully fixes failed tests)
     - optimizations (about 30% faster)

@@ -9,8 +9,7 @@ _lcss(char *s, char *t)
 {
     int i, j, m, n, z, found, allocated;
     int *pos_s, *pos_t;         /* hit positions in s and t */
-    int *L, *K;                 /* dyn. programming rows    */
-    int *Lm, *Km, *temp;        /* dyn. programming rows    */
+    int *L, *K, *temp;          /* dyn. programming rows    */
 
     LCSS *lcss;                 /* return value lcss        */
     LCSS_RES res;               /* return value             */
@@ -20,8 +19,8 @@ _lcss(char *s, char *t)
 
     /* allocate space for the dynamic programming rows
        I should switch s and t when t is larger than s     */
-    CALLOC(Km, int, n + 1);
-    CALLOC(Lm, int, n + 1);
+    CALLOC(L, int, n + 1);
+    CALLOC(K, int, n + 1);
 
     z = 0;
     found = 0;
@@ -29,14 +28,12 @@ _lcss(char *s, char *t)
     MALLOC(pos_s, int, allocated);
     MALLOC(pos_t, int, allocated);
 
-    L = Lm;
-    K = Km;
-
     /* compute matrix */
     for (i = 1; i <= m; i++) {
-        for (j = 0; j <= n; j++) {      /* reset L[0] */
+        L[0] = 0;
+        for (j = 1; j <= n; j++) {      /* reset L[0] */
             L[j] = 0;
-            if (j >= 1 && s[i - 1] == t[j - 1]) {
+            if (s[i - 1] == t[j - 1]) {
                 L[j] = K[j - 1] + 1;
                 if (L[j] > z) {
                     z = L[j];

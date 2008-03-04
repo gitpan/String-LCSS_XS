@@ -12,7 +12,7 @@ our @EXPORT_OK = qw(
     lcss lcss_all
 );
 
-our $VERSION = '0.6';
+our $VERSION = '0.7';
 
 require XSLoader;
 XSLoader::load( 'String::LCSS_XS', $VERSION );
@@ -71,8 +71,8 @@ Returns all longest common substrings of s and t including the match positions.
   my $t = 'the quick brown fox jumps over the lazy dog';
 
                      Rate    String::LCSS String::LCSS_XS
-  String::LCSS     42.8/s              --           -100%
-  String::LCSS_XS 46296/s         108074%              --
+  String::LCSS     42.1/s              --           -100%
+  String::LCSS_XS 58140/s         137933%              --
   
 =head1 BUGS AND LIMITATIONS
 
@@ -104,7 +104,7 @@ Markus Riester, E<lt>mriester@gmx.deE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2007 by Markus Riester
+Copyright (C) 2007-2008 by Markus Riester
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

@@ -1,4 +1,4 @@
-String-LCSS_XS version 0.6
+String-LCSS_XS version 0.7
 ==========================
 
 String::LCSS_XS computes the Longest Common Substring of two strings
@@ -16,14 +16,10 @@ To install this module type the following:
    make test
    make install
 
+
 COPYRIGHT AND LICENCE
 
-Put the correct copyright and licence information here.
-
-Copyright (C) 2007 by Markus Riester
+Copyright (C) 2007-2008 by Markus Riester
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.6 or,
-at your option, any later version of Perl 5 you may have available.
-
-
+it under the same terms as Perl itself.
