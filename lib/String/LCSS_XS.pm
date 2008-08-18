@@ -12,7 +12,7 @@ our @EXPORT_OK = qw(
     lcss lcss_all
 );
 
-our $VERSION = '0.7';
+our $VERSION = '1.0';
 
 require XSLoader;
 XSLoader::load( 'String::LCSS_XS', $VERSION );
@@ -23,6 +23,10 @@ __END__
 =head1 NAME
 
 String::LCSS_XS - Find The Longest Common Substring of Two Strings.
+
+=head1 VERSION
+
+This document describes String::LCSS_XS version 1.0
 
 =head1 SYNOPSIS
 
@@ -71,8 +75,8 @@ Returns all longest common substrings of s and t including the match positions.
   my $t = 'the quick brown fox jumps over the lazy dog';
 
                      Rate    String::LCSS String::LCSS_XS
-  String::LCSS     42.1/s              --           -100%
-  String::LCSS_XS 58140/s         137933%              --
+  String::LCSS     41.7/s              --           -100%
+  String::LCSS_XS 65789/s         157800%              --
   
 =head1 BUGS AND LIMITATIONS
 

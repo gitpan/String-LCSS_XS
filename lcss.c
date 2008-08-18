@@ -31,15 +31,16 @@ _lcss(char *s, char *t)
     /* compute matrix */
     for (i = 1; i <= m; i++) {
         L[0] = 0;
-        for (j = 1; j <= n; j++) {      /* reset L[0] */
-            L[j] = 0;
+        for (j = 1; j <= n; j++) {      
             if (s[i - 1] == t[j - 1]) {
                 L[j] = K[j - 1] + 1;
                 if (L[j] > z) {
                     z = L[j];
-                    found = 0;
+                    pos_s[0] = i - z;
+                    pos_t[0] = j - z;
+                    found = 1;
                 }
-                if (L[j] == z) {
+                else if (L[j] == z) {
                     /* maybe we need some more space */
                     if (found >= allocated) {
                         allocated += 256;
@@ -50,7 +51,9 @@ _lcss(char *s, char *t)
                     pos_t[found] = j - z;
                     found++;
                 }
-            }
+            } else {
+                L[j] = 0;
+            } 
         }
         temp = K;
         K = L;

@@ -13,6 +13,7 @@ my $build = Module::Build->new(
     requires          => {  
         'XSLoader'   => 0,
         'Exporter'   => 0,
+        'perl'       => '5.6.1',
     },
     build_requires    => { 
         'Test::More' => 0, 

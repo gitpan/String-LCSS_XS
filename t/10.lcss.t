@@ -1,4 +1,4 @@
-use Test::More tests => 10;
+use Test::More tests => 11;
 use strict;
 
 use String::LCSS_XS qw(lcss);
@@ -34,6 +34,9 @@ is ($longest, 'AB', 'ABBA at the beginning and end (reverse args)');
 
 my @result = lcss ( "zyzxx", "abczyzefg" );
 is_deeply(\@result, [ 'zyz',0,3], 'wantarray returns positions');
+
+$longest = lcss ( 'b', 'ab' );
+is($longest, 'b', 'bug in LCSS');
 
 $longest = lcss ( "123", "ABCD" );
 is($longest, undef, 'undef when there is no cs');

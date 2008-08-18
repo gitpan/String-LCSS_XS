@@ -17,6 +17,27 @@ WriteMakefile(
     LIBS              => [''], 
     DEFINE            => '-I ../..', 
     INC               => '-I.', 
+    #CCFLAGS            => ' -lgcov -static-libgcc -fprofile-arcs -ftest-coverage',
     OBJECT            => '$(O_FILES)', 
     clean             =>  { FILES => 'String-LCSS_XS-*' },
+    #dynamic_lib      => { OTHERLDFLAGS => ' -lgcov'},
 );
+
+1;
+
+package MY;
+
+sub postamble
+{
+    join "\n" =>
+    'cover test_cover:',
+    "\tcover -delete",
+    "\tmake",
+    "\t" .'HARNESS_PERL_SWITCHES=-MDevel::Cover $(MAKE) test',
+    "\t" .'gcov LCSS_XS.c 2>/dev/null',
+    "\t" .'gcov lcss.c 2>/dev/null',
+    "\t" .'find * -name \*.gcov -exec gcov2perl {} \;',
+    "\t" .'cover',
+    '',
+    '';
+    } # postamble

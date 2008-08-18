@@ -1,6 +1,7 @@
 Changes
 LCSS_XS.xs
 Build.PL
+LICENSE
 Makefile.PL
 MANIFEST
 ppport.h

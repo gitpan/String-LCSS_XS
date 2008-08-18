@@ -1,6 +1,13 @@
 Revision history for Perl extension String::LCSS_XS.
 
-0.7  Mon Dec 10 2007
+1.0  Mon Aug 18 2008
+    - perl version in Build.PL
+    - version in POD
+    - added LICENSE file
+    - added coverage code from Text::CSV_XS
+    - small performance enhancements
+
+0.7  Tue Mar 04 2008
     - code cleanup
     - added example
 
