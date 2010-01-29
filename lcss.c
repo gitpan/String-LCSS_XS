@@ -5,7 +5,7 @@
 #include "macros.h"
 
 LCSS_RES
-_lcss(char *s, char *t)
+_lcss(char *s, char *t, int min)
 {
     int i, j, m, n, z, found, allocated;
     int *pos_s, *pos_t;         /* hit positions in s and t */
@@ -34,23 +34,25 @@ _lcss(char *s, char *t)
         for (j = 1; j <= n; j++) {      
             if (s[i - 1] == t[j - 1]) {
                 L[j] = K[j - 1] + 1;
-                if (L[j] > z) {
-                    z = L[j];
-                    pos_s[0] = i - z;
-                    pos_t[0] = j - z;
-                    found = 1;
-                }
-                else if (L[j] == z) {
-                    /* maybe we need some more space */
-                    if (found >= allocated) {
-                        allocated += 256;
-                        REALLOC(pos_s, int, allocated);
-                        REALLOC(pos_t, int, allocated);
+                if (L[j] >= min) {
+                    if (L[j] > z) {
+                        z = L[j];
+                        pos_s[0] = i - z;
+                        pos_t[0] = j - z;
+                        found = 1;
                     }
-                    pos_s[found] = i - z;
-                    pos_t[found] = j - z;
-                    found++;
-                }
+                    else if (L[j] == z) {
+                        /* maybe we need some more space */
+                        if (found >= allocated) {
+                            allocated += 256;
+                            REALLOC(pos_s, int, allocated);
+                            REALLOC(pos_t, int, allocated);
+                        }
+                        pos_s[found] = i - z;
+                        pos_t[found] = j - z;
+                        found++;
+                    }
+                }    
             } else {
                 L[j] = 0;
             } 

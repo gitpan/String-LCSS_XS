@@ -1,5 +1,9 @@
 Revision history for Perl extension String::LCSS_XS.
 
+1.1  Fri Jan 29 2010
+    - optional min argument
+    - spellchecking in POD
+    
 1.0  Mon Aug 18 2008
     - perl version in Build.PL
     - version in POD

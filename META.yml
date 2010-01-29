@@ -1,24 +1,24 @@
----
-name: String-LCSS_XS
-version: 1.0
+--- #YAML:1.0
+name:               String-LCSS_XS
+version:            1.0_9
+abstract:           Find The Longest Common Substring of Two Strings.
 author:
-  - 'Markus Riester <mriester@gmx.de>'
-abstract: Find The Longest Common Substring of Two Strings.
-license: perl
-resources:
-  license: http://dev.perl.org/licenses/
-requires:
-  Exporter: 0
-  XSLoader: 0
-  perl: 5.6.1
+    - Markus Riester <mriester@gmx.de>
+license:            perl
+distribution_type:  module
+configure_requires:
+    ExtUtils::MakeMaker:  0
 build_requires:
-  ExtUtils::CBuilder: 0
-  Test::More: 0
-provides:
-  String::LCSS_XS:
-    file: lib/String/LCSS_XS.pm
-    version: 1.0
-generated_by: Module::Build version 0.2808
+    ExtUtils::MakeMaker:  0
+requires:
+    Exporter:    0
+    Test::More:  0
+    XSLoader:    0
+no_index:
+    directory:
+        - t
+        - inc
+generated_by:       ExtUtils::MakeMaker version 6.54
 meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4

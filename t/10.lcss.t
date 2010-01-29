@@ -1,4 +1,4 @@
-use Test::More tests => 11;
+use Test::More tests => 13;
 use strict;
 
 use String::LCSS_XS qw(lcss);
@@ -12,6 +12,12 @@ is ( $longest, "abcxyz", "abcxyzzx vs abcxyzefg" );
 
 $longest = lcss ( "foobar", "abcxyzefg" );
 is ( $longest, 'f', "foobar vs abcxyzefg" );
+
+$longest = lcss ( "foobar", "abcxyzefg", 1 );
+is ( $longest, 'f', "foobar vs abcxyzefg" );
+
+$longest = lcss ( "foobar", "abcxyzefg", 2 );
+is ( $longest, undef, "foobar vs abcxyzefg with min=2" );
 
 my $needle = "i pushed the lazy dog into a creek, the quick brown fox told me to";
 my $haystack = "the quick brown fox jumps over the lazy dog";

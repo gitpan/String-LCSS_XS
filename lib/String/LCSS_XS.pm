@@ -12,7 +12,7 @@ our @EXPORT_OK = qw(
     lcss lcss_all
 );
 
-our $VERSION = '1.0';
+our $VERSION = '1.0_9';
 
 require XSLoader;
 XSLoader::load( 'String::LCSS_XS', $VERSION );
@@ -26,7 +26,7 @@ String::LCSS_XS - Find The Longest Common Substring of Two Strings.
 
 =head1 VERSION
 
-This document describes String::LCSS_XS version 1.0
+This document describes String::LCSS_XS version 1.1
 
 =head1 SYNOPSIS
 
@@ -43,6 +43,8 @@ This document describes String::LCSS_XS version 1.0
      print "$result->[0] ($result->[1],$result->[2])\n";
   }
 
+  $longest = lcss ( "foobar", "abcxyzefg", 3 ); #undef
+
 =head1 DESCRIPTION
 
 String::LCSS_XS computes the Longest Common Substring of two strings s and t.
@@ -57,13 +59,14 @@ defined are
   
 =over
 
-=item lcss(s, t)
+=item lcss(s, t, min)
 
 In scalar context, returns the first found longest common substring of s and
 t. In array context, it also returns the match positions. Mainly for
-compatibility with L<String::LCSS>. 
+compatibility with L<String::LCSS>. The optional argument min defines the
+minimum length of a reported substring.
 
-=item lcss_all(s, t)
+=item lcss_all(s, t, min)
 
 Returns all longest common substrings of s and t including the match positions.  
 
@@ -108,7 +111,7 @@ Markus Riester, E<lt>mriester@gmx.deE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2007-2008 by Markus Riester
+Copyright (C) 2007-2010 by Markus Riester.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
@@ -127,7 +130,7 @@ NECESSARY SERVICING, REPAIR, OR CORRECTION.
 
 IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
 WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
+REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENSE, BE
 LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
 OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
 THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
