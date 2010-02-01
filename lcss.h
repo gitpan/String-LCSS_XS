@@ -1,3 +1,9 @@
+#include "EXTERN.h"
+#include "perl.h"
+#include "XSUB.h"
+
+#include "ppport.h"
+
 typedef struct S_LCSS
 {
     char* s;
@@ -11,5 +17,6 @@ typedef struct S_LCSS_RES
     int n;
 } LCSS_RES;
 
-LCSS_RES _lcss(char* s, char* t, int min);
+LCSS_RES _lcss(char* s, char* t, int min, int utf8);
 void _free_res(LCSS_RES res);
+void _get_byte_positions(char *s, int pos, int length, int *begin, int *end);

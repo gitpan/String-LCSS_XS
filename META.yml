@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               String-LCSS_XS
-version:            1.0_9
+version:            1.0_10
 abstract:           Find The Longest Common Substring of Two Strings.
 author:
     - Markus Riester <mriester@gmx.de>

@@ -9,9 +9,9 @@
 MODULE = String::LCSS_XS		PACKAGE = String::LCSS_XS		
 
 void
-_compute_all_lcss(s, t, min = NO_INIT)
-	char *	s
-	char *	t
+_compute_all_lcss(s, t, min = 1)
+	SV *	s
+	SV *	t
     int min 
 PROTOTYPE: $$;$
 ALIAS:
@@ -22,10 +22,8 @@ PREINIT:
     int i;
     AV * ra;
 PPCODE:
-    if (items > 2)
-        res = _lcss(s,t,min);
-    else 
-        res = _lcss(s,t,1);
+    res = _lcss(SvPV_nolen(s),SvPV_nolen(t),min, DO_UTF8(s) || DO_UTF8(t));
+        
     if (res.n <= 0) {
         _free_res(res);
         XSRETURN_UNDEF;

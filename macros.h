@@ -1,14 +1,4 @@
-#define MALLOC(P,T,S) { if((P=(T*)malloc(sizeof(T)*(size_t)(S)))==NULL) { \
-      fprintf(stderr,"malloc failed.\n"); \
-      exit(EXIT_FAILURE); \
-} } 
-
-#define CALLOC(P,T,S) { if((P=(T*)calloc((size_t)(S),sizeof(T)))==NULL) { \
-      fprintf(stderr,"calloc failed.\n"); \
-      exit(EXIT_FAILURE); \
-} } 
-
-#define REALLOC(P,T,S) { if((P=(T*)realloc(P,sizeof(T)*(size_t)(S)))==NULL) { \
-      fprintf(stderr,"realloc failed.\n");              \
-      exit(EXIT_FAILURE); \
-} }
+#define MALLOC(P,T,S) Newx(P,S,T) 
+#define CALLOC(P,T,S) Newxz(P,S,T) 
+#define REALLOC(P,T,S) Renew(P,S,T) 
+#define FREE(P) Safefree(P)
