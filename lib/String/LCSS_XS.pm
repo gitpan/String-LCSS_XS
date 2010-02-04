@@ -12,7 +12,7 @@ our @EXPORT_OK = qw(
     lcss lcss_all
 );
 
-our $VERSION = '1.0_10';
+our $VERSION = '1.0_11';
 
 require XSLoader;
 XSLoader::load( 'String::LCSS_XS', $VERSION );
@@ -38,12 +38,12 @@ This document describes String::LCSS_XS version 1.1
   my @result = lcss ( "zyzxx", "abczyzefg" );
   print "$result[0] ($result[1],$result[2])\n";
 
+  $longest = lcss ( "foobar", "abcxyzefg", 3 ); #undef
+
   my @results = lcss_all ( "ABBA", "BABA" );
   for my $result (@results) {
      print "$result->[0] ($result->[1],$result->[2])\n";
   }
-
-  $longest = lcss ( "foobar", "abcxyzefg", 3 ); #undef
 
 =head1 DESCRIPTION
 
@@ -94,6 +94,8 @@ returns this single character.
 
 Daniel Yacob has written L<String::LCSS>. I stole his API, test suite and
 SYNOPSIS.
+
+ikegami wrote the UTF8 tests.
 
 =head1 SEE ALSO
 

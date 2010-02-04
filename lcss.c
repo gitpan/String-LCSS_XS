@@ -5,7 +5,7 @@
 #include "macros.h"
 
 LCSS_RES
-_lcss(char *s, char *t, int min, int utf8)
+_lcss(char *s, char *t, int min, int utf8s, int utf8t)
 {
     int     i, j, m, n, z, found, allocated;
     int    *pos_s, *pos_t, bb, be, bl;  /* hit positions in s and t */
@@ -33,10 +33,10 @@ _lcss(char *s, char *t, int min, int utf8)
     MALLOC(pos_t, int, allocated);
 
     /* compute matrix */
-    if (utf8) {
+    if (utf8s || utf8t) {
         i = 0;
         while (*ss) {
-            if (UTF8_IS_INVARIANT(*ss)) {
+            if (UTF8_IS_INVARIANT(*ss) || !utf8s) {
                 uvs = *ss;
                 ss++;
             } else {
@@ -48,7 +48,7 @@ _lcss(char *s, char *t, int min, int utf8)
             tt = t;
             j = 0;
             while (*tt) {
-                if (UTF8_IS_INVARIANT(*tt)) {
+                if (UTF8_IS_INVARIANT(*tt) || !utf8t) {
                     uvt = *tt;
                     tt++;
                 } else {
@@ -118,8 +118,9 @@ _lcss(char *s, char *t, int min, int utf8)
     FREE(L);
     FREE(K);
     MALLOC(lcss, LCSS, found);
-
-    if (utf8) {
+    
+    //fprintf(stderr, "%s vs %s (%d %d)\n",s,t,utf8s,utf8t);
+    if (utf8s) {
         for (i = 0; i < found; i++) {
             _get_byte_positions(s, pos_s[i], z, &bb, &be);
             bl = be - bb + 1;

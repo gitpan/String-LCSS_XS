@@ -5,4 +5,4 @@ severity=1
 [-ClassHierarchies::ProhibitExplicitISA]
 
 [Documentation::PodSpelling]
-stop_words = Riester Substring runtime substring substrings lcss Yacob API perl Gusfield
+stop_words = Riester Substring runtime substring substrings lcss Yacob API perl Gusfield ikegami UTF8

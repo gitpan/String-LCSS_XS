@@ -19,10 +19,13 @@ ALIAS:
     lcss_all = 2
 PREINIT:
     LCSS_RES res;
-    int i;
+    int i, utf8;
     AV * ra;
+    SV * sv;
 PPCODE:
-    res = _lcss(SvPV_nolen(s),SvPV_nolen(t),min, DO_UTF8(s) || DO_UTF8(t));
+    utf8 = DO_UTF8(s);
+    
+    res = _lcss(SvPV_nolen(s),SvPV_nolen(t),min, DO_UTF8(s), DO_UTF8(t));
         
     if (res.n <= 0) {
         _free_res(res);
@@ -31,12 +34,16 @@ PPCODE:
     else {
         if (GIMME_V == G_SCALAR) {
             EXTEND(sp, 1);
-            PUSHs ( sv_2mortal ( newSVpv ( res.lcss[0].s, 0)));
+            sv =  sv_2mortal ( newSVpv ( res.lcss[0].s, 0 ));
+            if (utf8) SvUTF8_on(sv);
+            PUSHs (sv);
         }
         else {
             if (ix == 1) {
                 EXTEND(sp, 3);
-                PUSHs ( sv_2mortal ( newSVpv ( res.lcss[0].s, 0)));
+                sv =  sv_2mortal ( newSVpv ( res.lcss[0].s, 0 ));
+                if (utf8) SvUTF8_on(sv);
+                PUSHs (sv);
                 PUSHs ( sv_2mortal ( newSViv ( res.lcss[0].pos_s)));
                 PUSHs ( sv_2mortal ( newSViv ( res.lcss[0].pos_t)));
             }
@@ -44,7 +51,10 @@ PPCODE:
                 EXTEND(sp, res.n);
                 for (i=0; i< res.n; i++) {
                     ra = (AV *)sv_2mortal((SV *)newAV());
-                    av_push( ra, newSVpv ( res.lcss[i].s, 0));
+                    sv =  newSVpv ( res.lcss[i].s, 0 );
+                    if (utf8) SvUTF8_on(sv);
+                    av_push( ra, sv);
+                    //av_push( ra, newSVpv ( res.lcss[i].s, 0));
                     av_push( ra, newSViv ( res.lcss[i].pos_s));
                     av_push( ra, newSViv ( res.lcss[i].pos_t));
                     PUSHs ( sv_2mortal( newRV((SV *) ra )) );

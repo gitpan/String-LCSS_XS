@@ -17,6 +17,6 @@ typedef struct S_LCSS_RES
     int n;
 } LCSS_RES;
 
-LCSS_RES _lcss(char* s, char* t, int min, int utf8);
+LCSS_RES _lcss(char* s, char* t, int min, int utf8s, int utf8t);
 void _free_res(LCSS_RES res);
 void _get_byte_positions(char *s, int pos, int length, int *begin, int *end);

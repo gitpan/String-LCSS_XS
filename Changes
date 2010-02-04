@@ -1,5 +1,10 @@
 Revision history for Perl extension String::LCSS_XS.
 
+1.0_11 Thu Feb 4 2010
+    - included more utf8 tests (thanks ikegami)
+    - utf8 and non-utf8 strings 
+    - return utf8 strings
+    
 1.0_10 Mon Feb 1 2010
     - new ppport.h
     - use perl's malloc & friends
