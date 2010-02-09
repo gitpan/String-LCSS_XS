@@ -11,10 +11,10 @@ $longest = lcss ( "abcxyzzx", "abcxyzefg" );
 is ( $longest, "abcxyz", "abcxyzzx vs abcxyzefg" );
 
 $longest = lcss ( "foobar", "abcxyzefg" );
-is ( $longest, 'f', "foobar vs abcxyzefg" );
+is ( $longest, 'a', "foobar vs abcxyzefg" );
 
 $longest = lcss ( "foobar", "abcxyzefg", 1 );
-is ( $longest, 'f', "foobar vs abcxyzefg" );
+is ( $longest, 'a', "foobar vs abcxyzefg" );
 
 $longest = lcss ( "foobar", "abcxyzefg", 2 );
 is ( $longest, undef, "foobar vs abcxyzefg with min=2" );

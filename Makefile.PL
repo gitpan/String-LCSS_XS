@@ -4,6 +4,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'String::LCSS_XS',
     VERSION_FROM      => 'lib/String/LCSS_XS.pm', 
+    MIN_PERL_VERSION  => '5.008000',  # Unicode support
     PREREQ_PM         => {
         'XSLoader'   => 0,
         'Exporter'   => 0,

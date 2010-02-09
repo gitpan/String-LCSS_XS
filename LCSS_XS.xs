@@ -2,6 +2,7 @@
 #include "perl.h"
 #include "XSUB.h"
 
+#define NEED_sv_2pv_flags
 #include "ppport.h"
 
 #include "lcss.h"
@@ -10,56 +11,54 @@ MODULE = String::LCSS_XS		PACKAGE = String::LCSS_XS
 
 void
 _compute_all_lcss(s, t, min = 1)
-	SV *	s
-	SV *	t
-    int min 
+    SV* s
+    SV* t
+    int min
 PROTOTYPE: $$;$
 ALIAS:
-    lcss = 1
+    lcss     = 1
     lcss_all = 2
 PREINIT:
-    LCSS_RES res;
-    int i, utf8;
-    AV * ra;
-    SV * sv;
+    int list_cx;
+    int wide;
+    SV* rv;
 PPCODE:
-    utf8 = DO_UTF8(s);
-    
-    res = _lcss(SvPV_nolen(s),SvPV_nolen(t),min, DO_UTF8(s), DO_UTF8(t));
-        
-    if (res.n <= 0) {
-        _free_res(res);
+    if (!s || !t)
+        XSRETURN_UNDEF;
+
+    list_cx = GIMME_V == G_ARRAY;
+
+    SvPV_nolen(s);  /* Process magic and stringify */
+    SvPV_nolen(t);
+
+    wide = SvUTF8(s) || SvUTF8(t);
+    if (wide) {
+        sv_utf8_upgrade_nomg(s);
+        sv_utf8_upgrade_nomg(t);
+    }
+
+    rv = lcss(
+        wide,
+        SvPVX(s), SvCUR(s),
+        SvPVX(t), SvCUR(t),
+        min,
+        list_cx,
+        list_cx && ix == 2
+    );
+
+    if (rv == &PL_sv_undef) {
         XSRETURN_UNDEF;
     }
-    else {
-        if (GIMME_V == G_SCALAR) {
-            EXTEND(sp, 1);
-            sv =  sv_2mortal ( newSVpv ( res.lcss[0].s, 0 ));
-            if (utf8) SvUTF8_on(sv);
-            PUSHs (sv);
-        }
-        else {
-            if (ix == 1) {
-                EXTEND(sp, 3);
-                sv =  sv_2mortal ( newSVpv ( res.lcss[0].s, 0 ));
-                if (utf8) SvUTF8_on(sv);
-                PUSHs (sv);
-                PUSHs ( sv_2mortal ( newSViv ( res.lcss[0].pos_s)));
-                PUSHs ( sv_2mortal ( newSViv ( res.lcss[0].pos_t)));
-            }
-            if (ix == 2) {
-                EXTEND(sp, res.n);
-                for (i=0; i< res.n; i++) {
-                    ra = (AV *)sv_2mortal((SV *)newAV());
-                    sv =  newSVpv ( res.lcss[i].s, 0 );
-                    if (utf8) SvUTF8_on(sv);
-                    av_push( ra, sv);
-                    //av_push( ra, newSVpv ( res.lcss[i].s, 0));
-                    av_push( ra, newSViv ( res.lcss[i].pos_s));
-                    av_push( ra, newSViv ( res.lcss[i].pos_t));
-                    PUSHs ( sv_2mortal( newRV((SV *) ra )) );
-                }    
-            }
-        }
+    else if (SvTYPE(rv) != SVt_PVAV) {
+        XPUSHs(sv_2mortal(rv));
+        XSRETURN(1);
     }
-    _free_res(res);
+    else {
+        I32 num_items = av_len((AV*)rv) + 1;
+        I32 i;
+        EXTEND(sp, num_items);
+        for (i=num_items; i--; )
+            ST(i) = sv_2mortal(av_pop((AV*)rv));
+        sv_2mortal(rv);
+        XSRETURN(num_items);
+    }

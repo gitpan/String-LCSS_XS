@@ -1,5 +1,5 @@
 package String::LCSS_XS;
-use 5.006_001;
+use 5.008;
 
 use strict;
 use warnings;
@@ -12,7 +12,7 @@ our @EXPORT_OK = qw(
     lcss lcss_all
 );
 
-our $VERSION = '1.0_11';
+our $VERSION = '1.1';
 
 require XSLoader;
 XSLoader::load( 'String::LCSS_XS', $VERSION );
@@ -38,18 +38,18 @@ This document describes String::LCSS_XS version 1.1
   my @result = lcss ( "zyzxx", "abczyzefg" );
   print "$result[0] ($result[1],$result[2])\n";
 
-  $longest = lcss ( "foobar", "abcxyzefg", 3 ); #undef
-
   my @results = lcss_all ( "ABBA", "BABA" );
   for my $result (@results) {
      print "$result->[0] ($result->[1],$result->[2])\n";
   }
 
+  $longest = lcss ( "foobar", "abcxyzefg", 3 ); #undef
+
 =head1 DESCRIPTION
 
 String::LCSS_XS computes the Longest Common Substring of two strings s and t.
 It is a C implementation of L<String::LCSS> and uses a dynamic programming 
-algorithm with O(mn) runtime and O(n) memory usage (m is the length of s 
+algorithm with O(mn) runtime and O(min(m,n)) memory usage (m is the length of s 
 and n the length of t). 
 
 =head1 EXPORT_OK 
@@ -78,8 +78,8 @@ Returns all longest common substrings of s and t including the match positions.
   my $t = 'the quick brown fox jumps over the lazy dog';
 
                      Rate    String::LCSS String::LCSS_XS
-  String::LCSS     41.7/s              --           -100%
-  String::LCSS_XS 65789/s         157800%              --
+  String::LCSS     60.9/s              --           -100%
+  String::LCSS_XS 84746/s         138966%              --
   
 =head1 BUGS AND LIMITATIONS
 
@@ -95,8 +95,6 @@ returns this single character.
 Daniel Yacob has written L<String::LCSS>. I stole his API, test suite and
 SYNOPSIS.
 
-ikegami wrote the UTF8 tests.
-
 =head1 SEE ALSO
 
 L<String::LCSS> - A pure perl implementation (but O(n^3) runtime)
@@ -109,7 +107,8 @@ ISBN 0-521-58519-8.
 
 =head1 AUTHOR
 
-Markus Riester, E<lt>mriester@gmx.deE<gt>
+Markus Riester, E<lt>limaone@cpan.orgE<gt> with lots of help and many
+patches from ikegami. 
 
 =head1 COPYRIGHT AND LICENSE
 

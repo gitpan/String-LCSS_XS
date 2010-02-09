@@ -1,10 +1,17 @@
 Revision history for Perl extension String::LCSS_XS.
 
-1.0_11 Thu Feb 4 2010
-    - included more utf8 tests (thanks ikegami)
-    - utf8 and non-utf8 strings 
-    - return utf8 strings
-    
+1.1 Mon Feb 8 2010 
+-  Patch from ikegami (thank you so much :-) ):
+     *  Uses appropriate #defines for types rather than "int".
+     *  No longer allocates C structures to pass info from the .c to the .xs
+     *  Implements the swapping a comment said should be done.
+     *  No longer keeps track of all matches if the user only wants one.
+     *  Uses a more efficient means of extracting multiple matches from UTF8=1
+        strings.
+     *  No longer warns for bad UTF8=1 strings (I think). It used to warn
+     *  multiple times.
+     *  Uses safer utf8n_to_uvchr instead of utf8_to_uvchr
+
 1.0_10 Mon Feb 1 2010
     - new ppport.h
     - use perl's malloc & friends

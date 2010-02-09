@@ -2,21 +2,14 @@
 #include "perl.h"
 #include "XSUB.h"
 
-#include "ppport.h"
-
-typedef struct S_LCSS
-{
-    char* s;
-    int pos_s;
-    int pos_t;
-} LCSS;
-
-typedef struct S_LCSS_RES
-{
-    LCSS* lcss;
-    int n;
-} LCSS_RES;
-
-LCSS_RES _lcss(char* s, char* t, int min, int utf8s, int utf8t);
-void _free_res(LCSS_RES res);
-void _get_byte_positions(char *s, int pos, int length, int *begin, int *end);
+SV*  /* AV if want_pos or want_all, PV otherwise */
+lcss(
+    int         wide,      /* s and t are in the UTF8=1 format    */
+    const char* s,         /* Format determined by utf8 parameter */
+    STRLEN      s_len,     /* Byte length of s                    */
+    const char* t,         /* Format determined by utf8 parameter */
+    STRLEN      t_len,     /* Byte length of t                    */
+    int         min,       /* Ignore substrings shorter than this */
+    int         want_pos,  /* Return positions as well as strings */
+    int         want_all   /* Return all matches, or just one     */
+);
