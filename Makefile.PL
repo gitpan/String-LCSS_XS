@@ -12,7 +12,7 @@ WriteMakefile(
     }, 
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/String/LCSS_XS.pm', # retrieve abstract from module
-       AUTHOR         => 'Markus Riester <mriester@gmx.de>') : ()),
+       AUTHOR         => 'Markus Riester <limaone@cpan.org>') : ()),
     ((ExtUtils::MakeMaker->VERSION() gt '6.30') ?
             ('LICENSE'  => 'perl')         : ()),
     LIBS              => [''], 

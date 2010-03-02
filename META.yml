@@ -1,9 +1,9 @@
 --- #YAML:1.0
 name:               String-LCSS_XS
-version:            1.1
+version:            1.2
 abstract:           Find The Longest Common Substring of Two Strings.
 author:
-    - Markus Riester <mriester@gmx.de>
+    - Markus Riester <limaone@cpan.org>
 license:            perl
 distribution_type:  module
 configure_requires:

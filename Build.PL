@@ -13,13 +13,13 @@ my $build = Module::Build->new(
     requires          => {  
         'XSLoader'   => 0,
         'Exporter'   => 0,
-        'perl'       => '5.6.1',
+        'perl'       => '5.8.0',
     },
     build_requires    => { 
         'Test::More' => 0, 
         'ExtUtils::CBuilder' => 0, 
     },
-    dist_author       => 'Markus Riester <mriester@gmx.de>',
+    dist_author       => 'Markus Riester <limaone@cpan.org>',
     license           => 'perl',
     c_source          => './',
     xs_files          => { 'LCSS_XS.xs' => 'lib/String/LCSS_XS.xs', },

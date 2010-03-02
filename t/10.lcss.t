@@ -1,4 +1,4 @@
-use Test::More tests => 13;
+use Test::More tests => 15;
 use strict;
 
 use String::LCSS_XS qw(lcss);
@@ -46,3 +46,9 @@ is($longest, 'b', 'bug in LCSS');
 
 $longest = lcss ( "123", "ABCD" );
 is($longest, undef, 'undef when there is no cs');
+
+$longest = lcss ( undef, "ABCD" );
+is($longest, undef, 'undef when one string is undef');
+
+$longest = lcss ( "ABCD", undef );
+is($longest, undef, 'undef when one string is undef');

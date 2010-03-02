@@ -23,7 +23,7 @@ PREINIT:
     int wide;
     SV* rv;
 PPCODE:
-    if (!s || !t)
+    if (!SvOK(s) || !SvOK(t))
         XSRETURN_UNDEF;
 
     list_cx = GIMME_V == G_ARRAY;
